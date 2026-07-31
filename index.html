@@ -62,6 +62,12 @@ main{position:fixed;inset:0;z-index:10;display:flex;flex-direction:column;align-
 .dg{width:5px;height:5px;background:#d4af37;transform:rotate(45deg);box-shadow:0 0 10px rgba(212,175,55,.5);flex-shrink:0}
 .tagline{font-family:'Rajdhani',sans-serif;font-weight:400;font-size:clamp(.85rem,2vw,1.25rem);letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.78);line-height:2.2;opacity:0;animation:rise 1s ease 3.3s forwards}
 .tagline em{font-style:normal;color:#d4af37;font-weight:600}
+.deploy{margin-top:clamp(18px,3vh,32px);opacity:0;animation:rise 1s ease 4.6s forwards;max-width:520px;padding:0 24px}
+.deploy-label{font-family:'Rajdhani',sans-serif;font-weight:400;font-size:clamp(.5rem,.8vw,.62rem);letter-spacing:.38em;text-transform:uppercase;color:rgba(212,175,55,.45);margin-bottom:10px}
+.deploy-body{font-family:'Rajdhani',sans-serif;font-weight:300;font-size:clamp(.72rem,1.3vw,.88rem);letter-spacing:.08em;color:rgba(255,255,255,.38);line-height:1.9}
+.deploy-body strong{color:rgba(212,175,55,.7);font-weight:600}
+.deploy-body a{color:rgba(212,175,55,.7);text-decoration:none;transition:color .3s}
+.deploy-body a:hover{color:#d4af37}
 
 .squad{position:fixed;bottom:clamp(88px,13vh,128px);left:0;right:0;z-index:10;display:flex;justify-content:center;gap:clamp(22px,4.5vw,64px);opacity:0;animation:rise 1s ease 3.8s forwards}
 .member{display:flex;flex-direction:column;align-items:center;gap:7px}
@@ -113,6 +119,15 @@ main{position:fixed;inset:0;z-index:10;display:flex;flex-direction:column;align-
   <p class="eyebrow">Intelligence &nbsp;&middot;&nbsp; Forged &nbsp;&middot;&nbsp; Deployed</p>
   <div class="divider"><div class="dl"></div><div class="dg"></div><div class="dl"></div></div>
   <p class="tagline">We don&rsquo;t assist &mdash; we <em>architect</em><br>We came to change what&rsquo;s possible.</p>
+  <div class="deploy" style="pointer-events:all;">
+    <p class="deploy-label">What We Deploy</p>
+    <p class="deploy-body">
+      We build AI-powered products at the intersection of data, automation and edge intelligence.<br><br>
+      Our first public deployment: <strong><a href="https://betting4profits.co.uk">Betting4Profits</a></strong> &mdash;
+      a football intelligence platform combining 15 years of human expertise with real-time data tools and AI-assisted analysis.<br><br>
+      More to follow.
+    </p>
+  </div>
 </main>
 
 <div class="side sl">
