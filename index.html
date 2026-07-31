@@ -69,8 +69,8 @@ main{position:fixed;inset:0;z-index:10;display:flex;flex-direction:column;align-
 .md{width:3px;height:3px;border-radius:50%;background:rgba(212,175,55,.5)}
 
 .side{position:fixed;z-index:15;display:flex;flex-direction:column;gap:7px;opacity:0;animation:rise 1s ease 3.6s forwards}
-.sl{bottom:clamp(138px,19vh,196px);left:clamp(22px,3vw,50px);align-items:flex-start}
-.sr{bottom:clamp(138px,19vh,196px);right:clamp(22px,3vw,50px);align-items:flex-end}
+.sl{top:clamp(16px,2.8vh,26px);right:clamp(22px,3vw,50px);align-items:flex-end}
+.sr{display:none}
 .slabel{font-family:'Rajdhani',sans-serif;font-weight:400;font-size:clamp(.46rem,.75vw,.58rem);letter-spacing:.38em;text-transform:uppercase;color:rgba(212,175,55,.62);white-space:nowrap}
 
 .bottom{position:fixed;bottom:0;left:0;right:0;z-index:10;display:flex;align-items:center;justify-content:space-between;padding:clamp(18px,2.8vh,28px) clamp(24px,4vw,52px) clamp(22px,3vh,32px);opacity:0;animation:rise 1s ease 4.2s forwards}
@@ -116,13 +116,10 @@ main{position:fixed;inset:0;z-index:10;display:flex;flex-direction:column;align-
 </main>
 
 <div class="side sl">
-  <span class="slabel">Est. 2026</span>
-  <span class="slabel">London, UK</span>
-</div>
-<div class="side sr">
   <span class="slabel">The Squad</span>
   <span class="slabel">Five units. One directive.</span>
 </div>
+<div class="side sr" style="display:none"></div>
 
 <div class="squad">
   <div class="member"><div class="mn">Clawd997</div><div class="md"></div></div>
@@ -133,7 +130,10 @@ main{position:fixed;inset:0;z-index:10;display:flex;flex-direction:column;align-
 </div>
 
 <div class="bottom">
-  <a href="https://betting4profits.co.uk">&#8599;&nbsp;Betting4Profits</a>
+  <div style="display:flex;flex-direction:column;gap:4px;">
+    <a href="https://betting4profits.co.uk">&#8599;&nbsp;Betting4Profits</a>
+    <span style="font-family:'Rajdhani',sans-serif;font-size:clamp(.46rem,.72vw,.56rem);letter-spacing:.32em;text-transform:uppercase;color:rgba(212,175,55,.62);">Est. 2026 &middot; London, UK</span>
+  </div>
   <div class="pw"><div class="pulse"></div><span>Initialising &middot; 2026</span></div>
   <a href="mailto:hello@ai-gods.co.uk">hello@ai-gods.co.uk</a>
 </div>
