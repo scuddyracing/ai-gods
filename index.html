@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ai-Gods — Intelligence. Forged. Deployed.</title>
+<meta name="description" content="Ai-Gods builds AI-powered systems, platforms and automation.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap');
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;overflow:hidden;background:#000;cursor:none}
+#cur{position:fixed;width:6px;height:6px;background:#d4af37;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
+#cur-ring{position:fixed;width:32px;height:32px;border:1px solid rgba(212,175,55,.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .2s,height .2s,border-color .2s}
+
+/* Squad image — centred in the void between header text and squad names */
+#squad-img{
+  position:fixed;
+  left:50%;top:50%;
+  transform:translate(-50%,-48%);
+  width:clamp(280px,38vw,520px);
+  height:auto;
+  z-index:1;
+  opacity:0;
+  animation:img-in 1.8s cubic-bezier(.16,1,.3,1) 2.8s forwards;
+  mask-image:radial-gradient(ellipse 80% 85% at 50% 50%,black 30%,transparent 100%);
+  -webkit-mask-image:radial-gradient(ellipse 80% 85% at 50% 50%,black 30%,transparent 100%);
+  filter:brightness(.9) contrast(1.05);
+}
+@keyframes img-in{
+  from{opacity:0;transform:translate(-50%,-46%) scale(.97)}
+  to{opacity:.88;transform:translate(-50%,-48%) scale(1)}
+}
+
+/* Subtle warm glow behind the image */
+#squad-glow{
+  position:fixed;
+  left:50%;top:50%;
+  transform:translate(-50%,-48%);
+  width:clamp(300px,42vw,560px);
+  height:clamp(200px,35vh,480px);
+  z-index:0;
+  background:radial-gradient(ellipse at 50% 60%,rgba(180,100,20,.18) 0%,transparent 70%);
+  opacity:0;
+  animation:img-in 2.4s ease 3s forwards;
+}
+
+.gn{position:fixed;inset:-50%;width:200%;height:200%;z-index:3;pointer-events:none;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:grain .55s steps(1) infinite}
+@keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-2%,-2%)}40%{transform:translate(2%,1%)}60%{transform:translate(-1%,3%)}80%{transform:translate(3%,-1%)}}
+.sc{position:fixed;inset:0;z-index:3;pointer-events:none;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,.018) 3px,rgba(0,0,0,.018) 4px)}
+.bt{position:fixed;top:0;left:0;right:0;height:1px;z-index:5;background:rgba(212,175,55,.32);transform:scaleX(0);transform-origin:left;animation:bar-in 1.4s cubic-bezier(.16,1,.3,1) 1.8s forwards}
+.bb{position:fixed;bottom:0;left:0;right:0;height:1px;z-index:5;background:rgba(212,175,55,.32);transform:scaleX(0);transform-origin:right;animation:bar-in 1.4s cubic-bezier(.16,1,.3,1) 2s forwards}
+@keyframes bar-in{to{transform:scaleX(1)}}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+main{position:fixed;inset:0;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;padding-top:clamp(32px,7vh,64px);pointer-events:none}
+.eyebrow{font-family:'Rajdhani',sans-serif;font-weight:400;font-size:clamp(.6rem,1.1vw,.72rem);letter-spacing:.42em;text-transform:uppercase;color:#d4af37;opacity:0;animation:rise 1s ease 2.4s forwards;margin-bottom:clamp(10px,2vh,18px)}
+.divider{display:flex;align-items:center;gap:14px;margin:clamp(12px,2.5vh,24px) 0;opacity:0;animation:rise 1s ease 3.1s forwards}
+.dl{width:80px;height:1px;background:linear-gradient(90deg,transparent,rgba(212,175,55,.6),transparent)}
+.dg{width:5px;height:5px;background:#d4af37;transform:rotate(45deg);box-shadow:0 0 10px rgba(212,175,55,.5);flex-shrink:0}
+.tagline{font-family:'Rajdhani',sans-serif;font-weight:400;font-size:clamp(.85rem,2vw,1.25rem);letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.78);line-height:2.2;opacity:0;animation:rise 1s ease 3.3s forwards}
+.tagline em{font-style:normal;color:#d4af37;font-weight:600}
+
+.squad{position:fixed;bottom:clamp(88px,13vh,128px);left:0;right:0;z-index:10;display:flex;justify-content:center;gap:clamp(22px,4.5vw,64px);opacity:0;animation:rise 1s ease 3.8s forwards}
+.member{display:flex;flex-direction:column;align-items:center;gap:7px}
+.mn{font-family:'Cinzel',serif;font-weight:400;font-size:clamp(.52rem,.85vw,.72rem);letter-spacing:.3em;text-transform:uppercase;color:#d4af37}
+.md{width:3px;height:3px;border-radius:50%;background:rgba(212,175,55,.5)}
+
+.side{position:fixed;z-index:10;display:flex;flex-direction:column;gap:7px;opacity:0;animation:rise 1s ease 3.6s forwards}
+.sl{bottom:clamp(138px,19vh,196px);left:clamp(22px,3vw,50px);align-items:flex-start}
+.sr{bottom:clamp(138px,19vh,196px);right:clamp(22px,3vw,50px);align-items:flex-end}
+.slabel{font-family:'Rajdhani',sans-serif;font-weight:400;font-size:clamp(.46rem,.75vw,.58rem);letter-spacing:.38em;text-transform:uppercase;color:rgba(212,175,55,.62);white-space:nowrap}
+
+.bottom{position:fixed;bottom:0;left:0;right:0;z-index:10;display:flex;align-items:center;justify-content:space-between;padding:clamp(14px,2.2vh,22px) clamp(24px,4vw,52px);opacity:0;animation:rise 1s ease 4.2s forwards}
+.bottom a,.bottom span{font-family:'Rajdhani',sans-serif;font-size:clamp(.5rem,.85vw,.62rem);font-weight:400;letter-spacing:.32em;text-transform:uppercase;color:rgba(212,175,55,.62);text-decoration:none;transition:color .3s}
+.bottom a:hover{color:#d4af37}
+.pw{display:flex;align-items:center;gap:9px}
+.pulse{width:4px;height:4px;border-radius:50%;background:#d4af37;box-shadow:0 0 7px #d4af37;animation:pulse 2.8s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 7px #d4af37}50%{opacity:.15;box-shadow:none}}
+
+@media(max-width:600px){
+  .squad{gap:12px;bottom:clamp(78px,12vh,108px)}
+  .mn{font-size:.48rem;letter-spacing:.18em}
+  .side{display:none}
+  .bottom{flex-direction:column;gap:6px;padding:12px 18px;background:linear-gradient(to top,rgba(0,0,0,.7),transparent)}
+  .dl{width:50px}
+  #squad-img{width:85vw;transform:translate(-50%,-46%)}
+}
+</style>
+</head>
+<body>
+<div id="cur"></div>
+<div id="cur-ring"></div>
+
+<!-- Squad image centred in void -->
+<div id="squad-glow"></div>
+<img id="squad-img" src="squad-composite-test.jpg" alt="The Squad" />
+
+<!-- Film grain + scanlines -->
+<div class="gn"></div>
+<div class="sc"></div>
+<div class="bt"></div>
+<div class="bb"></div>
+
+<main>
+  <p class="eyebrow">Intelligence &nbsp;&middot;&nbsp; Forged &nbsp;&middot;&nbsp; Deployed</p>
+  <div class="divider"><div class="dl"></div><div class="dg"></div><div class="dl"></div></div>
+  <p class="tagline">We don&rsquo;t assist &mdash; we <em>architect</em><br>We came to change what&rsquo;s possible.</p>
+</main>
+
+<div class="side sl">
+  <span class="slabel">Est. 2026</span>
+  <span class="slabel">London, UK</span>
+</div>
+<div class="side sr">
+  <span class="slabel">The Squad</span>
+  <span class="slabel">Five units. One directive.</span>
+</div>
+
+<div class="squad">
+  <div class="member"><div class="mn">Clawd997</div><div class="md"></div></div>
+  <div class="member"><div class="mn">Beskar</div><div class="md"></div></div>
+  <div class="member"><div class="mn">Creed</div><div class="md"></div></div>
+  <div class="member"><div class="mn">Foundling</div><div class="md"></div></div>
+  <div class="member"><div class="mn">Vor&apos;e</div><div class="md"></div></div>
+</div>
+
+<div class="bottom">
+  <a href="https://betting4profits.co.uk">&#8599;&nbsp;Betting4Profits</a>
+  <div class="pw"><div class="pulse"></div><span>Initialising &middot; 2026</span></div>
+  <a href="mailto:hello@ai-gods.co.uk">hello@ai-gods.co.uk</a>
+</div>
+
+<div style="position:fixed;bottom:12px;left:50%;transform:translateX(-50%);font-family:'Courier New',monospace;font-size:10px;color:rgba(212,175,55,0.25);letter-spacing:0.15em;text-align:center;white-space:nowrap;z-index:10;">
+  AI-GODS UK LTD &middot; COMPANY NO. 05027823 &middot; <a href="https://betting4profits.co.uk" style="color:rgba(212,175,55,0.25);text-decoration:none;">BETTING4PROFITS.CO.UK</a>
+</div>
+
+<script>
+const cur=document.getElementById('cur'),ring=document.getElementById('cur-ring');
+let mx=-200,my=-200,rx=-200,ry=-200;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
+(function tick(){cur.style.left=mx+'px';cur.style.top=my+'px';rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(tick)})();
+document.querySelectorAll('a').forEach(a=>{
+  a.addEventListener('mouseenter',()=>{ring.style.width='48px';ring.style.height='48px';ring.style.borderColor='rgba(212,175,55,.7)'});
+  a.addEventListener('mouseleave',()=>{ring.style.width='32px';ring.style.height='32px';ring.style.borderColor='rgba(212,175,55,.4)'});
+});
+</script>
+</body>
+</html>
